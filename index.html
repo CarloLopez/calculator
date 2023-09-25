@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Calculator</title>
+        <script src="script.js" defer></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="calculator-container">
+            <div class="calculator-bg">
+                <div class="interface">
+                    <div class="display-bg">
+                        <div class="working-display">10 + 2</div>
+                        <div class="main-display">5 * 5</div>
+                    </div>
+                    <div class="button-container">
+                        <div class="button-row">
+                            <button class="button" display-type="func" id="ac">AC</button>
+                            <button class="button" display-type="func" id="c">C</button>
+                            <button class="button" display-type="operator" id="exponent">^x</button>
+                            <button class="button" display-type="operator" id="divide">/</button>
+                        </div>
+                        <div class="button-row">
+                            <button class="button" display-type="digit" id="seven">7</button>
+                            <button class="button" display-type="digit" id="eight">8</button>
+                            <button class="button" display-type="digit" id="nine">9</button>
+                            <button class="button" display-type="operator" id="add">+</button>
+                        </div>
+                        <div class="button-row">
+                            <button class="button" display-type="digit" id="four">4</button>
+                            <button class="button" display-type="digit" id="five">5</button>
+                            <button class="button" display-type="digit" id="six">6</button>
+                            <button class="button" display-type="operator" id="subtract">-</button>
+                        </div>
+                        <div class="button-row">
+                            <button class="button" display-type="digit" id="one">1</button>
+                            <button class="button" display-type="digit" id="two">2</button>
+                            <button class="button" display-type="digit" id="three">3</button>
+                            <button class="button" display-type="operator" id="multiply">*</button>
+                        </div>
+                        <div class="button-row">
+                            <div class="divider">
+                                <button class="button" display-type="digit" id="zero">0</button>
+                                <button class="button" display-type="digit" id="decimal">.</button>
+                            </div>
+                            <button class="button" display-type="operator" id="equals">=</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
