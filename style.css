@@ -16,8 +16,8 @@ body {
 
 .calculator-bg {
     background-color: #25272c;
-    width: 400px;
-    height: 600px;
+    width: 50vh;
+    height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -109,8 +109,8 @@ body {
 }
 
 #equals {
-    max-width: 175px;
-    max-height: 75px;
+    max-width: 235px;
+    max-height: 100px;
 }
 
 .footer {
