@@ -3,6 +3,7 @@ let secondNum = null;
 let operator = null;
 let total = null;
 
+// Calculates result based on operator pressed
 function operate(firstNum, secondNum, operator) {
     switch(operator) {
         case "+":
@@ -22,6 +23,7 @@ function operate(firstNum, secondNum, operator) {
     }
 }
 
+// Checks data-type attribute of button pressed
 function buttonClicked(button) {
     let buttonType = button.dataset.type;
     let buttonValue = button.innerText;
@@ -42,6 +44,8 @@ function buttonClicked(button) {
     }
 }
 
+// Performs calculation of two numbers and rounds to 4dp
+// Updates calculator display to display result and its components
 function calculate() {
     if (firstNum && secondNum && operator) {
         firstNum = Number(firstNum);
@@ -49,7 +53,7 @@ function calculate() {
         total = operate(firstNum, secondNum, operator);
         total = Math.floor(total * 10000) / 10000;
         
-        workingDisplay.innerText += " " + secondNum;
+        workingDisplay.innerText += " " + secondNum + " =";
         mainDisplay.innerText = total === Infinity ? "ERROR" : total;
 
         firstNum = null;
@@ -58,6 +62,7 @@ function calculate() {
     }
 }
 
+// Updates either first or second number based on operator presence
 function digitClicked(buttonVal) {
     let decimalCheck = false;
 
@@ -81,6 +86,7 @@ function digitClicked(buttonVal) {
     mainDisplay.innerText += buttonVal;
 }
 
+// Checks decimal validity to only allow one period in number
 function decimalClicked(buttonVal, number) {
     if (buttonVal === ".") {
         if (number != null && number.includes(".")) {
@@ -90,10 +96,13 @@ function decimalClicked(buttonVal, number) {
     return false;
 }
 
+// Sets operator on click and disallows simultaneous operators
 function operatorClicked(buttonVal) {
     if (firstNum && !operator) {
         operator = buttonVal;
     } else if (operator && secondNum) {
+        // If operator button pressed in place of equals button, 
+        // automatically calculates total and expects second number with new operator
         calculate();
         operator = buttonVal;
     } else {
@@ -104,6 +113,7 @@ function operatorClicked(buttonVal) {
     mainDisplay.innerText = "";
 }
 
+// Clears all values or current number based on button pressed
 function funcClicked(buttonVal) {
     mainDisplay.innerText = "";
     if ((buttonVal) === "AC") {
@@ -118,12 +128,13 @@ function funcClicked(buttonVal) {
     }
 }
 
+// Sets operator to null after calculation to signal no operator chaining with multiple values (>2) 
 function equalsClicked() {
     calculate();
-    workingDisplay.innerText += " =";
     operator = null;
 }
 
+// Allows keyboard functionality
 function keyPressed(code) {
     if (code.includes("Digit")) {
         digitClicked(code[5]);
@@ -150,6 +161,7 @@ function keyPressed(code) {
     }
 }
 
+// Allows keyboard functionality where key pressed requires a shift key
 function shiftPressed(code) {
     switch(code) {
         case "KeyC":
@@ -173,6 +185,22 @@ const workingDisplay = document.querySelector(".working-display");
 const buttons = document.querySelectorAll(".button");
 buttons.forEach(button => {
     button.addEventListener("click", button => buttonClicked(button.target));
+    // Add mouseover/mouseout event listeners to dynamically change border colors on hover
+    button.addEventListener("mouseout", element => element.target.style.borderColor = "#252629");
+    switch(button.dataset.type) {
+        case "digit":
+            button.addEventListener("mouseover", element => element.target.style.borderColor = "white");
+            break;
+        case "func":
+            button.addEventListener("mouseover", element => element.target.style.borderColor = "yellow");
+            break;
+        case "operator":
+            button.addEventListener("mouseover", element => element.target.style.borderColor = "orange");
+            break;
+        case "equals":
+            button.addEventListener("mouseover", element => element.target.style.borderColor = "green");
+            break;
+    }
 })
 
 document.addEventListener("keypress", key => {
@@ -182,5 +210,3 @@ document.addEventListener("keypress", key => {
         keyPressed(key.code);
     }
 }); 
-
-// TODO: Comment
