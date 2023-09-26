@@ -6,7 +6,6 @@ let total = null;
 function resetVariables() {
     firstNum = null;
     secondNum = null;
-    operator = null;
 }
 
 function operate(firstNum, secondNum, operator) {
@@ -38,6 +37,11 @@ function buttonClicked(button) {
                 operator = button.innerText;
                 workingDisplay.innerText = mainDisplay.innerText + ` ${operator}`;
                 mainDisplay.innerText = "";
+            } else if (operator && secondNum) {
+                calculate();
+                operator = button.innerText;
+                workingDisplay.innerText = mainDisplay.innerText + ` ${operator}`;
+                mainDisplay.innerText = "";
             }
             break;
         case "func":
@@ -53,18 +57,9 @@ function buttonClicked(button) {
             }
             break;
         case "equals":
-            if (firstNum && secondNum && operator) {
-                firstNum = Number(firstNum);
-                secondNum = Number(secondNum);
-                total = operate(firstNum, secondNum, operator);
-                total = Math.floor(total * 10000) / 10000;
-                
-                workingDisplay.innerText += " " + secondNum + " =";
-                mainDisplay.innerText = total === Infinity ? "Error: Zero Divisor" : total;
-
-                resetVariables();
-                firstNum = total;
-            }
+            calculate();
+            workingDisplay.innerText += " =";
+            operator = null;
             break;
     }
 }
@@ -102,6 +97,21 @@ function decimalClicked(buttonVal, number) {
     return false;
 }
 
+function calculate() {
+    if (firstNum && secondNum && operator) {
+        firstNum = Number(firstNum);
+        secondNum = Number(secondNum);
+        total = operate(firstNum, secondNum, operator);
+        total = Math.floor(total * 10000) / 10000;
+        
+        workingDisplay.innerText += " " + secondNum;
+        mainDisplay.innerText = total === Infinity ? "ERROR" : total;
+
+        resetVariables();
+        firstNum = total;
+    }
+}
+
 const mainDisplay = document.querySelector(".main-display");
 const workingDisplay = document.querySelector(".working-display");
 
@@ -109,3 +119,6 @@ const buttons = document.querySelectorAll(".button");
 buttons.forEach(button => {
     button.addEventListener("click", button => buttonClicked(button.target));
 })
+
+// TODO: Add Keyboard Support
+// TODO: Refactor and Comment
