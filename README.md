@@ -11,6 +11,6 @@ A simple yet functional calculator built with JavaScript, HTML, and CSS. This pr
 
 ## Usage
 
-- Requres any modern web browser with support for HTML5, CSS3, and JavaScript. **[Click Here](https://carlolopez.github.io/calculator/) to access live page.**
+**[Click Here](https://carlolopez.github.io/calculator/) to access live page.**
 
 ![image](https://github.com/CarloLopez/calculator/assets/86852232/aaf7d322-1fa0-4830-95d1-558e07659f44)
